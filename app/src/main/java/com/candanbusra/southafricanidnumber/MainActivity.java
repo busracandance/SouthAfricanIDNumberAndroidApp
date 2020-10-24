@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,19 +34,25 @@ public class MainActivity extends AppCompatActivity {
 
             tvResult.setVisibility(View.GONE);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             btnSubmit.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
 
+                    if (etInput.getText().toString().isEmpty()){
+                        Toast.makeText(MainActivity.this,"Please Enter ID Number!",Toast.LENGTH_SHORT).show();
+                    }
                     String id=etInput.getText().toString().trim();
                     if (id.length()!=13){
+                        Toast.makeText(MainActivity.this,"Please Enter Valid ID!",Toast.LENGTH_SHORT).show();
+                    }
+                    /*if (id.length()!=13){
 
                         builder.setTitle("WARNING!");
                         builder.setMessage("PLEASE ENTER A VALID ID NUMBER.");
                         builder.setPositiveButton("OK", null);
                         builder.show();
-                    }
+                    }*/
                     String dateOfBirth=id.substring(0,6);
                     String editedDateOfBirth=dateOfBirth.substring(0,2)+"/"+dateOfBirth.substring(2,4)+"/"+dateOfBirth.substring(4,6);
 
